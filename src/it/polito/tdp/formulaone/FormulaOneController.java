@@ -22,13 +22,13 @@ public class FormulaOneController {
     private URL location;
 
     @FXML // fx:id="boxAnno"
-    private ComboBox<?> boxAnno; // Value injected by FXMLLoader
+    private ComboBox<Integer> boxAnno; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnSelezionaStagione"
     private Button btnSelezionaStagione; // Value injected by FXMLLoader
 
     @FXML // fx:id="boxGara"
-    private ComboBox<?> boxGara; // Value injected by FXMLLoader
+    private ComboBox<String> boxGara; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnSimulaGara"
     private Button btnSimulaGara; // Value injected by FXMLLoader
@@ -44,7 +44,21 @@ public class FormulaOneController {
 
     @FXML
     void doSelezionaStagione(ActionEvent event) {
-    	txtResult.setText("btn Seleziona stagione premuto");
+    	int myYear = this.boxAnno.getValue();
+    
+    	try {
+    		this.model.creaGrafo(myYear);
+    		txtResult.setText("GRAFO CREATO\n");
+    		txtResult.appendText("L'arco con peso maggiore è:\n" + this.model.getMax().toString() );
+    	}catch (RuntimeException e) {
+			System.out.println(":( Qualcosa è andato storto nella creazione del grafo!");
+		}
+    }
+    
+    @FXML
+    void actionPerformed(ActionEvent event) {
+		this.boxGara.getItems().clear();;
+		this.boxGara.getItems().addAll(this.model.getAllRaces(this.boxAnno.getValue()));
     }
 
     @FXML
@@ -65,6 +79,7 @@ public class FormulaOneController {
 
 	public void setModel(Model model) {
 		this.model = model;
+		this.boxAnno.getItems().addAll(this.model.getAllYears());
 		
 	}
 }

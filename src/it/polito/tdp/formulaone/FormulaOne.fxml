@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.formulaone.FormulaOneController">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.formulaone.FormulaOneController">
    <top>
       <Label text="Formula 1 (Esame 22/09/2017)" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -28,7 +28,7 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Text>
-                  <ComboBox fx:id="boxAnno" prefWidth="150.0" promptText="anno">
+                  <ComboBox fx:id="boxAnno" onAction="#actionPerformed" prefWidth="150.0" promptText="anno">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
